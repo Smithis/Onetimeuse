@@ -1,0 +1,4 @@
+Django==2.2.14
+djangorestframework==3.4.4
+requests==2.11.1
+

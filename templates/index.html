@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="text-center">
+{% for message in messages%}
+<h5>{{message}}</h5>
+{% endfor%}
+</div>
+<form action="/" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="mb-3">
+  <label for="formFile" class="form-label">choose a file</label>
+  <input class="form-control" required type="file" name="fil" id="formFile">
+</div>
+
+<div class="text-center">
+      <button type="submit" class="btn btn-primary">Upload</button>
+    </div>
+</form>
+<div class="container-center">
+  {% if key%}
+<p>your code is</p>
+<p class="h3"><strong>{{ key }}</strong></p>
+{% endif %}
+</div>
+
+{% endblock content %}
+
+
+{% block download %}
+
+
+
+<form action="/download" method="POST" >
+{% csrf_token %}
+<label for="formFile" class="form-label">ENTER THE CODE</label>
+<input type="text" required maxlength="5" class="form-control" name="game">
+<div class="text-center">
+      <button type="submit" class="btn btn-primary my-2">SUBMIT</button>
+    </div>
+</form>
+{% if img %}
+<hr>
+
+<div class="text-center">
+<p>{{img.name}}</p>
+  
+<a href="{{img.url}}">{{img.url}}</a>  | |
+
+
+<a href="{{img.url}}" download="{{img.url}}" ><button class="btn btn-primary my-2 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+  <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
+  <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg>download</button></a>
+
+</div>
+
+
+{% endif %}
+
+
+
+{% endblock download %}
+
+
+
+
